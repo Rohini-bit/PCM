@@ -8,7 +8,7 @@ pipeline {
                 git 'https://github.com/Rohini-bit/PCM.git'
 
                 // Run Maven as a wrapper.
-                bat "./mvnw compile"
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
 echo 'Building the project with maven compile'
  
         }
@@ -18,7 +18,7 @@ echo 'Building the project with maven compile'
 
        stage('Test') {
             steps {
-                bat "./mvnw test"
+                sh "./mvnw test"
 
 echo 'Testing the project with maven test'
 
@@ -26,7 +26,7 @@ echo 'Testing the project with maven test'
 }
 stage('Deploy') {
             steps {
-bat "./mvnw package"
+sh "./mvnw package"
 echo 'Deploying the project with maven package'
 
 }
