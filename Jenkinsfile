@@ -9,7 +9,7 @@ pipeline {
 
                 // Run Maven Wrapper Commands
                 
-                sh "sudo ./mvnw compile"
+                sh "sudo -S ./mvnw compile"
 
                 echo 'Building the Project with maven compile'
             }
