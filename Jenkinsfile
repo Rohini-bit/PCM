@@ -20,6 +20,7 @@ pipeline {
        stage('Test') {
             steps {
               sudo  sh "./mvnw test"
+              
 
     echo 'Testing the project with maven test'
 
