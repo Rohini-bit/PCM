@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Clean') {
             steps {
                 // Get some code from a GitHub repository
                 git 'https://github.com/Rohini-bit/PCM.git'
 
                 // Run Maven Wrapper Commands
                 
-                sh "sudo -S ./mvnw compile"
+                sh "mvn clean"
 
                 echo 'Building the Project with maven compile'
             }
