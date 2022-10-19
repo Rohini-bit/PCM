@@ -8,8 +8,8 @@ pipeline {
                 git 'https://github.com/Rohini-bit/PCM.git'
 
                 // Run Maven Wrapper Commands
-               
-                sh "./mvnw compile"
+                
+                sh "sudo ./mvnw compile"
 
                 echo 'Building the Project with maven compile'
             }
@@ -19,7 +19,7 @@ pipeline {
             steps {
 
                 // Run Maven Wrapper Commands
-                sh "./mvnw test"
+                sh "sudo ./mvnw test"
 
                 echo 'Testing the Project with maven test'
             }
@@ -29,7 +29,7 @@ pipeline {
             steps {
 
                 // Run Maven Wrapper Commands
-                sh "./mvnw package"
+                sh "sudo ./mvnw package"
                 //sh "./mvnw package -Dmaven.test.skip=true"
 
                 echo 'Packaging the Project with maven package'
