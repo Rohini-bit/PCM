@@ -35,25 +35,7 @@ pipeline {
             }
         }
    
-        stage('Containerize') {
-            steps {
-
-                // Run Docker Build Command
-                sh "docker build -t estore-backend ."
-
-                echo 'Containerizing the App with Docker'
-            }
-        }
         
-        stage('Deploy') {
-            steps {
-
-                // Run docker run command with detached mode
-                sh "docker run -d -p 9090:9090 estore-backend"
-
-                echo 'Deploy the App with Docker'
-            }
-        }
   
     }
 }
