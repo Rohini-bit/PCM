@@ -8,7 +8,8 @@ pipeline {
                 git 'https://github.com/Rohini-bit/PCM.git'
 
                 // Run Maven Wrapper Commands
-                sh "./mvnw compile"
+               
+                sh "mvnw compile"
 
                 echo 'Building the Project with maven compile'
             }
