@@ -7,31 +7,53 @@ pipeline {
                 // Get some code from a GitHub repository
                 git 'https://github.com/Rohini-bit/PCM.git'
 
-                // Run Maven as a wrapper.
-               sudo sh "./mvnw compile"
-                
-          echo 'Building the project with maven compile'
- 
+                // Run Maven Wrapper Commands
+                sh "./mvnw compile"
+
+                echo 'Building the Project with maven compile'
+            }
         }
 
+        stage('Test') {
+            steps {
+
+                // Run Maven Wrapper Commands
+                sh "./mvnw test"
+
+                echo 'Testing the Project with maven test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+
+                // Run Maven Wrapper Commands
+                sh "./mvnw package"
+                //sh "./mvnw package -Dmaven.test.skip=true"
+
+                echo 'Packaging the Project with maven package'
+            }
+        }
+   
+        stage('Containerize') {
+            steps {
+
+                // Run Docker Build Command
+                sh "docker build -t estore-backend ."
+
+                echo 'Containerizing the App with Docker'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+
+                // Run docker run command with detached mode
+                sh "docker run -d -p 9090:9090 estore-backend"
+
+                echo 'Deploy the App with Docker'
+            }
+        }
+  
     }
-
-
-       stage('Test') {
-            steps {
-              sudo  sh "./mvnw test"
-              
-
-    echo 'Testing the project with maven test'
-
 }
-}
-stage('Package') {
-            steps {
-                  sudo sh "./mvnw package"
-     echo 'Deploying the project with maven package'
-
-}
- }
-  }
-   }
